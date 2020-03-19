@@ -5,6 +5,8 @@
  */
 package myfirstapplication;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Asus
@@ -15,7 +17,10 @@ public class MyFirstApplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      
-    }
+        ArrayList<Ingredients> ing= new ArrayList<Ingredients>();
+        
+        
+   
     
+}
 }
