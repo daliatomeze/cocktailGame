@@ -9,6 +9,14 @@ package myfirstapplication;
  *
  * @author Asus
  */
-public class Suger {
+public class Suger extends Ingredients{
+    private int volume;
+
+    private Color color;
     
+    public Suger(){
+        super("Sugar", 200);
+        this.volume = 0;
+        this.color = new Color(255,255,255);
+    }
 }

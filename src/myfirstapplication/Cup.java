@@ -11,4 +11,5 @@ package myfirstapplication;
  */
 public class Cup {
    private  int capacity;
+   private int calories;
 }

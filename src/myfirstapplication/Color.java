@@ -11,4 +11,16 @@ package myfirstapplication;
  */
 public class Color {
     
+       
+    public Color(int r, int g, int b){
+        this.r= r;
+        this.g = g;
+        this.b=  b;
+    }
+
+    private int r;
+
+    private int g;
+
+    private int b;
 }
