@@ -10,29 +10,18 @@ package myfirstapplication;
  * @author Asus
  */
 public class Milk extends Ingredients{
-      private int volume;
+   
 
-    private Color color;
-
-    public Milk(String name, int calories, int volume, Color colro) {
-        super(name, calories);
-        this.volume = volume;
-        this.color = color;
+   
+public final String str=("Milk intake has been connected to an abridged threat of heart ailment, colon cancer, type-2 diabetes, and obesity in new studies");
+    public Milk(String name, int calories, double volume,  Color color) {
+        super(name, calories,volume,new Color(255,255,255));
+       
+      
     }
 
-    public int getVolume() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public int setVolume(int volume) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Color getColor() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Color setColor(Color colro) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
+
+
+  
+

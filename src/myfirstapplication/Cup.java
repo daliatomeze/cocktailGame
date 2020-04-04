@@ -10,6 +10,36 @@ package myfirstapplication;
  * @author Asus
  */
 public class Cup {
-   private  int capacity;
-   private int calories;
+   private   final  double capacity =0.25;
+   private double  calories=0;
+   private double volume=0;
+
+    public Cup() {
+        
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+    
+
+    public double getCapacity() {
+        return capacity;
+    }
+
+
+    
+
+    public double getCalories() {
+        return calories;
+    }
+
+    public void setCalories(double calories) {
+        this.calories = calories;
+    }
+   
 }

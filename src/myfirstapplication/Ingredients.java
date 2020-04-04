@@ -11,11 +11,27 @@ package myfirstapplication;
  */
 public class Ingredients {
     
-    private int Calories;
+     private int Calories;
+     private double Volume;
      private String name;
-      public Ingredients(String name, int calories) {
+     private Color  color;
+
+
+    
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+     
+      public Ingredients(String name, int calories,double volume, Color color) {
         this.name = name;
         this.Calories = calories;
+        this.Volume=volume;
+        this.color=color;
         
     }
 
@@ -33,6 +49,14 @@ public class Ingredients {
 
     public void setCalories(int calories) {
         this.Calories = calories;
+    }
+
+    public double getVolume() {
+        return Volume;
+    }
+
+    public void setVolume(double Volume) {
+        this.Volume = Volume;
     }
     
     
