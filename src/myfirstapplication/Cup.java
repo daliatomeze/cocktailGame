@@ -41,5 +41,11 @@ public class Cup {
     public void setCalories(double calories) {
         this.calories = calories;
     }
+
+    @Override
+    public String toString() {
+        return "Cup{" + "calories=" + calories + ", volume=" + volume + '}';
+    }
+    
    
 }

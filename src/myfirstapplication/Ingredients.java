@@ -58,6 +58,11 @@ public class Ingredients {
     public void setVolume(double Volume) {
         this.Volume = Volume;
     }
+
+    @Override
+    public String toString() {
+        return  "  name=" + name  + " has a Calories=" + Calories + ",  and its Volume=" + Volume ;
+    }
     
     
     
