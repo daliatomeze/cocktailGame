@@ -5,11 +5,13 @@
  */
 package myfirstapplication;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Asus
  */
-public class Color {
+public class Color implements Serializable{
     
        
     public Color(int r, int g, int b){

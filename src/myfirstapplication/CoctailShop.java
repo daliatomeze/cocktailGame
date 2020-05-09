@@ -8,17 +8,25 @@ package myfirstapplication;
 import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
-import java.applet.Applet;
 import java.applet.AudioClip;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import sun.audio.*;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**i
  *
  * @author Asus
  */
 public class CoctailShop extends javax.swing.JFrame {
-
+      boolean b1=false;
+        ArrayList<Ingredients> ingList =new ArrayList<Ingredients>();
+      private Blender blender= new Blender();
+      ArrayList<Cup>cups=new ArrayList<>();
   
 
     /**
@@ -26,12 +34,13 @@ public class CoctailShop extends javax.swing.JFrame {
      */
     public CoctailShop() {
         initComponents();
+        
+        
     }
 
-      ArrayList<Ingredients> ingLiist =new ArrayList<Ingredients>();
-      private Blender blender= new Blender();
-      ArrayList<Cup>cups=new ArrayList<>();
-      boolean b1=false;
+    
+   
+      
       
     
     /**
@@ -43,18 +52,6 @@ public class CoctailShop extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        menuBar1 = new java.awt.MenuBar();
-        menu1 = new java.awt.Menu();
-        menu2 = new java.awt.Menu();
-        menuBar2 = new java.awt.MenuBar();
-        menu3 = new java.awt.Menu();
-        menu4 = new java.awt.Menu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -88,7 +85,6 @@ public class CoctailShop extends javax.swing.JFrame {
         caloriesLable = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         caloriesLabel2 = new javax.swing.JLabel();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel4 = new javax.swing.JPanel();
         cupPanel2 = new javax.swing.JPanel();
         cupPanel1 = new javax.swing.JPanel();
@@ -104,48 +100,19 @@ public class CoctailShop extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         cupPanel6 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        menu1.setLabel("File");
-        menuBar1.add(menu1);
-
-        menu2.setLabel("Edit");
-        menuBar1.add(menu2);
-
-        menu3.setLabel("File");
-        menuBar2.add(menu3);
-
-        menu4.setLabel("Edit");
-        menuBar2.add(menu4);
-
-        jMenuItem1.setText("jMenuItem1");
-
-        jMenuItem2.setText("jMenuItem2");
-
-        jMenuItem3.setText("jMenuItem3");
-
-        jMenuItem4.setText("jMenuItem4");
-
-        jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Coctail Shop");
         setAlwaysOnTop(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(800, 800));
+        getContentPane().setLayout(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -157,6 +124,9 @@ public class CoctailShop extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 723, 810, 0);
 
         jTabbedPane1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -373,7 +343,7 @@ public class CoctailShop extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setText("To remove an ingredient chose it and click remove button ");
         jPanel5.add(jLabel8);
-        jLabel8.setBounds(400, 340, 390, 16);
+        jLabel8.setBounds(370, 340, 390, 16);
 
         jButton11.setBackground(new java.awt.Color(153, 0, 153));
         jButton11.setFont(new java.awt.Font("Tahoma", 3, 13)); // NOI18N
@@ -403,20 +373,6 @@ public class CoctailShop extends javax.swing.JFrame {
         caloriesLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 3, 18)); // NOI18N
         jPanel5.add(caloriesLabel2);
         caloriesLabel2.setBounds(0, 610, 710, 40);
-
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel5.add(jLayeredPane1);
-        jLayeredPane1.setBounds(150, 250, 20, 100);
 
         jTabbedPane1.addTab("Blend", jPanel5);
 
@@ -524,7 +480,7 @@ public class CoctailShop extends javax.swing.JFrame {
         cupTextArea.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         cupTextArea.setForeground(new java.awt.Color(0, 102, 102));
         jPanel4.add(cupTextArea);
-        cupTextArea.setBounds(390, 80, 380, 320);
+        cupTextArea.setBounds(360, 70, 380, 320);
 
         jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cup1.jpg")); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -589,7 +545,26 @@ public class CoctailShop extends javax.swing.JFrame {
         jPanel4.add(jLabel14);
         jLabel14.setBounds(10, 330, 370, 50);
 
+        jButton12.setBackground(new java.awt.Color(153, 0, 102));
+        jButton12.setFont(new java.awt.Font("Yu Gothic UI Semilight", 3, 18)); // NOI18N
+        jButton12.setText("Clear");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton12);
+        jButton12.setBounds(450, 540, 120, 30);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabel15.setText("To clear blender and cups pleas enter clear button :");
+        jPanel4.add(jLabel15);
+        jLabel15.setBounds(80, 550, 360, 17);
+
         jTabbedPane1.addTab("pour", jPanel4);
+
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(24, 0, 786, 716);
 
         jMenuBar1.setBackground(new java.awt.Color(153, 0, 153));
 
@@ -598,9 +573,24 @@ public class CoctailShop extends javax.swing.JFrame {
         jMenu3.setText("save");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenu3);
 
         jMenuItem6.setText("open");
+        jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem6MouseClicked(evt);
+            }
+        });
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -610,31 +600,10 @@ public class CoctailShop extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("close");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenu2);
-
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getAccessibleContext().setAccessibleName("");
+        getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -646,29 +615,29 @@ public class CoctailShop extends javax.swing.JFrame {
     
     
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       Ingredients  f=new Fruits("Apple",130,0.2,new Color(255,0,0));
+       Ingredients  f=new Fruits("Apple",130,0.2,new Color(219,46,11));
          blender.add(f); 
-         this.show();
+         this.show1();
     
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
        Suger f=new Suger();
                 blender.add(f);
-               this.show();
+               this.show1();
                     
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      Fruits f=new Fruits("Banana",110,0.125,new Color(255,255,0));
+      Fruits f=new Fruits("Banana",110,0.125,new Color(255,255,50));
              blender.add(f);
-             this.show();
+             this.show1();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
       Fruits   f=new Fruits("Pineapple",50,0.11,new Color(255,255,130));
                       blender.add(f);
-                      this.show();
+                      this.show1();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -677,10 +646,11 @@ public class CoctailShop extends javax.swing.JFrame {
         blender.blend(blender);
         
         java.awt. Color  color;
-        Color c1=blender.getColor();
+        
         
         if(blender.getVolume()==0)color= new java.awt.Color(204,255,255);
-        else{color=new  java.awt.Color(c1.getR(),c1.getG(),c1.getB()); 
+        else{Color c1=blender.getColor();
+            color=new  java.awt.Color(c1.getR(),c1.getG(),c1.getB()); 
             
             
         }
@@ -695,41 +665,37 @@ public class CoctailShop extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      Fruits  f=new Fruits("Orange",80,0.15,new Color(255,140,60));
+      Fruits  f=new Fruits("Orange",80,0.15,new Color(255,179,25));
                      blender.add(f);
-                     this.show();
+                     this.show1();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      Fruits  f=new Fruits("Strawberries",50,0.125,new Color(255,0,0));
+      Fruits  f=new Fruits("Strawberries",50,0.125,new Color(252,90,141));
                       blender.add(f);
-                      this.show();
+                      this.show1();
                  
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       Fruits  f=new Fruits("kiwi",90,0.15,new Color(0,255,0));
+       Fruits  f=new Fruits("kiwi",90,0.15,new Color(176,191,26));
                       blender.add(f);
-                      this.show();
+                      this.show1();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
        Milk f=new Milk("milk",300,0.5, new Color(255,255,255));
                     blender.add(f);
-                    this.show();
+                    this.show1();
       
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
        
         
         int index= ingredientsList.getSelectedIndex();
         blender.getIng().remove(index);
-       this.show();
+       this.show1();
     
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -746,7 +712,10 @@ public class CoctailShop extends javax.swing.JFrame {
        cup1 = new Cup();
        cups.add(cup1);
        
-          if(blender.getVolume()==0);
+          if(blender.getVolume()==0){
+                  blender.getIng().clear();
+      this.show1();
+          }
           
        else{
           Color c1=blender.getColor();
@@ -783,14 +752,14 @@ public class CoctailShop extends javax.swing.JFrame {
         
         
        
-       blender.getIng().clear();
-      this.show();
+   
         double r1;
        if(blender.getCalories() >1) r1= blender.getCalories(); 
        else r1=0;
 
         caloriesLable.setText("the Total Caloreis in Blende is : " +  r1 + "  caloreis");
         caloriesLabel2.setText("The Total volume is : "  +blender.getVolume() + "  litters" );
+        
        
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -808,16 +777,138 @@ public class CoctailShop extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        // TODO add your handling code here:
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
        
-    }//GEN-LAST:event_jMenu2ActionPerformed
+        
+          try {
+              
+              ObjectInputStream in2=new ObjectInputStream(new FileInputStream("Blender.dat"));
+              
+              this.blender=(Blender) in2.readObject();
+              in2.close();
+             ObjectInputStream in3=new ObjectInputStream(new FileInputStream("Cup.dat"));
+             cups=(ArrayList<Cup>) in3.readObject();
+              in3.close();
+              Color c1 = blender.getColor();
+             java.awt.Color color =new java.awt.Color(c1.getR(),c1.getG(),c1.getB() );
+             // blender color
+         color1Panel.setBackground(color);
+         color2Panel.setBackground(color);
+         color3Panel.setBackground(color);
+         color1Panel1.setBackground(color);
+   
+       
+        double r1;
+       if(blender.getCalories() >1) r1= blender.getCalories(); 
+       else r1=0;
+       
+         caloriesLable.setText("the Total Caloreis in Blende is : " +  r1 + "  caloreis");
+        caloriesLabel2.setText("The Total volume is : "  +blender.getVolume() + "  litters" );
+        
+        
+        String str[];
+        str= new String[0];
+        ingredientsList.setListData(str);
+        
+        
+        if(cups.size()>0)
+        {
+            
+                //cup color
+      cupPanel1.setBackground(color);
+       cupPanel2.setBackground(color);
+       cupPanel3.setBackground(color);
+       cupPanel4.setBackground(color);
+       cupPanel5.setBackground(color);
+           String ing ="";
+       for(int i=0;i<blender.getIng().size() ;i++){
+           ing   += blender.getIng().get(i).getName() + "\n";
+       }
+        
+           String str1=   "Cup number  : "  +  cups.size()  + "  \n" + blender.getStr() + "\n " + "the  cup information : \n this cup contain : \n " +ing  + cups.get(cups.size()-1).toString() ;
+       cupTextArea.setText(str1); 
+       
+       b1=true;}
+        
+        
+        
+       JOptionPane.showMessageDialog(this,"opend");
+              
+          } catch (FileNotFoundException ex) {
+             JOptionPane.showMessageDialog(this, ex.getMessage() + "doesnt exist");
+          } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage() + "wrong");
+          } catch (ClassNotFoundException ex) {
+             JOptionPane.showMessageDialog(this, ex.getMessage() +" class not found");
+          }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+ 
+           
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+               String FileName1="ingredients.dat";
+               for(int i=0;i<blender.getIng().size();i++)
+                   ingList.add(blender.getIng().get(i));
+     
+          try {
+                ObjectOutputStream out1=new ObjectOutputStream(new FileOutputStream(FileName1));
+               out1.writeObject(ingList);
+                
+              out1.close();
+               ObjectOutputStream out2=new ObjectOutputStream(new FileOutputStream("Blender.dat"));
+              out2.writeObject(blender);
+              out2.close();
+             
+               ObjectOutputStream  out3=new ObjectOutputStream(new FileOutputStream("Cup.dat"));
+             out3.writeObject(cups);
+              
+               out3.close();
+                JOptionPane.showMessageDialog(this,"you saved succesfully");
+      
+          } catch (FileNotFoundException ex) {
+              JOptionPane.showMessageDialog(jMenu1, ex.getMessage());
+          } catch (IOException ex) {
+             JOptionPane.showMessageDialog(jMenu1, ex.getMessage());
+          }
+        
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenuItem6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem6MouseClicked
+
+    }//GEN-LAST:event_jMenuItem6MouseClicked
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+
+        blender.getIng().clear();
+        this.show1();
+        cups.clear();
+        java.awt.Color color= new java.awt.Color(204,255,255);
+          color1Panel.setBackground(color);
+         color2Panel.setBackground(color);
+         color3Panel.setBackground(color);
+         color1Panel1.setBackground(color);
+         color= new java.awt.Color(255,255,255);
+         
+       cupPanel1.setBackground(color);
+       cupPanel2.setBackground(color);
+       cupPanel3.setBackground(color);
+       cupPanel4.setBackground(color);
+       cupPanel5.setBackground(color);
+       
+       caloriesLable.setText("");
+        caloriesLabel2.setText("");
+         cupTextArea.setText(""); 
+         b1=false;
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     
     
     
     
-          public void show(){
+          public void show1(){
         String [] str;
         str= new String[blender.getIng().size()];
         for(int i=0;i<blender.getIng().size();i++){
@@ -835,14 +926,31 @@ public class CoctailShop extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
+           try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CoctailShop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CoctailShop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CoctailShop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CoctailShop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CoctailShop().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater (new Runnable(){
+             public void run() {
+            new CoctailShop().setVisible(true);
+             }
         });
     }
 
@@ -869,6 +977,7 @@ public class CoctailShop extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -883,6 +992,7 @@ public class CoctailShop extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -891,20 +1001,12 @@ public class CoctailShop extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -912,11 +1014,5 @@ public class CoctailShop extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private java.awt.Menu menu1;
-    private java.awt.Menu menu2;
-    private java.awt.Menu menu3;
-    private java.awt.Menu menu4;
-    private java.awt.MenuBar menuBar1;
-    private java.awt.MenuBar menuBar2;
     // End of variables declaration//GEN-END:variables
 }

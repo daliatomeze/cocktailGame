@@ -5,16 +5,22 @@
  */
 package myfirstapplication;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Asus
  */
-public class Ingredients {
+public class Ingredients implements Serializable{
     
      private int Calories;
      private double Volume;
      private String name;
      private Color  color;
+
+    Ingredients() {
+       
+    }
 
 
     

@@ -5,11 +5,13 @@
  */
 package myfirstapplication;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Asus
  */
-public class Cup {
+public class Cup implements Serializable{
    private   final  double capacity =0.25;
    private double  calories=0;
    private double volume=0;

@@ -5,11 +5,13 @@
  */
 package myfirstapplication;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Asus
  */
-public class Milk extends Ingredients{
+public class Milk extends Ingredients implements Serializable{
    
 
    

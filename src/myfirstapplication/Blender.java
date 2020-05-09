@@ -8,6 +8,7 @@ import static java.awt.PageAttributes.MediaType.C;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -18,7 +19,7 @@ import sun.audio.AudioStream;
  *
  * @author Asus
  */
-public class Blender {
+public class Blender implements Serializable{
  private  ArrayList<Ingredients> ing  = new ArrayList<Ingredients>();
 
     final double capacity=  1.5 ;
@@ -71,7 +72,9 @@ public class Blender {
     
  double tvolume =0;
     public void add(Ingredients ingredient) {
-         
+         for(int i=0;i<this.getIng().size();i++){
+             tvolume+=this.getIng().get(i).getVolume();
+         }
           tvolume+=ingredient.getVolume();
           
              try{
@@ -84,23 +87,26 @@ public class Blender {
       
              }
          catch(BlenderOverFlow e){
-            System.out.println(e.getMessage());
+           JOptionPane.showMessageDialog(null,e.getMessage());
         }
-     
+     tvolume=0;
     }
      
     
 
     public void blend(Blender b) {
+        volume=0;
           for(int i=0;i<ing.size() ; i++)
             volume+=ing.get(i).getVolume();
         try{
         test2(b.volume);
+        
         int totR=0;
         int totB=0;
         int totG=0;
         volume=0;
-        calories=0;
+       calories=0;
+        
         for(int i=0;i<ing.size() ; i++){
             volume+=ing.get(i).getVolume();
             calories +=ing.get(i).getCalories();
@@ -138,14 +144,17 @@ JOptionPane.showMessageDialog(null,e.getLocalizedMessage());
 }    
         
         
-         totR =totR/ing.size();
-        totB= totB /ing.size();
-         totG =totG/ing.size();
+        totR = totR/ing.size();
+        totB = totB /ing.size();
+        totG = totG/ing.size();
          b.setColor(new Color(totR,totG,totB));
         }
         catch(EmptyBlender e){
             JOptionPane.showMessageDialog(null, e.getMessage() +"" );
+            
         }
+        
+        
     }
     
  
@@ -194,7 +203,7 @@ JOptionPane.showMessageDialog(null,e.getLocalizedMessage());
  }
       public static void test2(double volume) throws EmptyBlender{
          if(volume==0)
-             throw new EmptyBlender("Blender is Empty you cant  blind pour ");
+             throw new EmptyBlender("Blender is Empty you cant  blind  or pour ");
      } 
  
 }

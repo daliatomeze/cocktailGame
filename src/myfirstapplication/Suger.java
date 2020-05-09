@@ -5,11 +5,13 @@
  */
 package myfirstapplication;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Asus
  */
-public class Suger extends Ingredients{
+public class Suger extends Ingredients implements Serializable{
    
 
    
