@@ -10,21 +10,17 @@ import java.awt.*;
 import javax.swing.*;
 import java.applet.AudioClip;
 import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import sun.audio.*;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**i
  *
- * @author Asus
+ * @author Asus++
  */
 public class CoctailShop extends javax.swing.JFrame {
       boolean b1=false;
-        ArrayList<Ingredients> ingList =new ArrayList<Ingredients>();
+        ArrayList<Ingredients> ingList =new ArrayList<Ingredients>(); 
+
       private Blender blender= new Blender();
       ArrayList<Cup>cups=new ArrayList<>();
   
@@ -692,6 +688,7 @@ public class CoctailShop extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
        
+        //REMOVE AN INGREDIENT 
         
         int index= ingredientsList.getSelectedIndex();
         blender.getIng().remove(index);
@@ -813,9 +810,9 @@ public class CoctailShop extends javax.swing.JFrame {
         
         if(cups.size()>0)
         {
-            
+   
                 //cup color
-      cupPanel1.setBackground(color);
+       cupPanel1.setBackground(color);
        cupPanel2.setBackground(color);
        cupPanel3.setBackground(color);
        cupPanel4.setBackground(color);
@@ -882,6 +879,8 @@ public class CoctailShop extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
 
+        
+        //clear button
         blender.getIng().clear();
         this.show1();
         cups.clear();
@@ -898,9 +897,9 @@ public class CoctailShop extends javax.swing.JFrame {
        cupPanel4.setBackground(color);
        cupPanel5.setBackground(color);
        
-       caloriesLable.setText("");
+        caloriesLable.setText("");
         caloriesLabel2.setText("");
-         cupTextArea.setText(""); 
+        cupTextArea.setText(""); 
          b1=false;
     }//GEN-LAST:event_jButton12ActionPerformed
 
